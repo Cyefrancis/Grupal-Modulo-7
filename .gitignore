@@ -1,0 +1,41 @@
+# Virtual environments
+env/
+.venv/
+venv/
+ENV/
+
+# Python bytecode
+*.pyc
+__pycache__
+.cache
+
+# Local development configuration
+.env
+.env.local
+.env.*
+
+# Database files
+*.db
+*.sqlite3
+mi_entorno
+# Logs
+*.log
+
+# Static files (collected by django)
+static/
+media/
+
+# Coverage reports
+.coverage
+coverage*
+
+# Test database migrations
+migrations/*.bak
+
+# IDE/Editor specific files
+.idea/
+.vscode/
+
+# OS specific files
+.DS_Store
+Thumbs.db

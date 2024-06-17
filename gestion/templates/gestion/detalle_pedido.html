@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>Detalle del Pedido</h1>
+    <p>Cliente: {{ pedido.cliente }}</p>
+    <p>Dirección de Entrega: {{ pedido.direccion_entrega }}</p>
+    <p>Estado: {{ pedido.estado }}</p>
+    <h2>Productos</h2>
+    <ul>
+        {% for detalle in detalles %}
+        <li>{{ detalle.producto.nombre }} - Cantidad: {{ detalle.cantidad }} - Precio: ${{ detalle.precio_unitario }}</li>
+        {% endfor %}
+    </ul>
+{% endblock  %}
