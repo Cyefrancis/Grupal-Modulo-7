@@ -1,0 +1,38 @@
+<!-- gestion/templates/gestion/tomar_pedido.html -->
+{% extends 'base.html' %}
+
+{% block title %}Tomar Pedido{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <h1>Tomar Pedido</h1>
+    <form method="post" action="{% url 'guardar_pedido' %}">
+        {% csrf_token %}
+        <div class="mb-3">
+            <label for="cliente" class="form-label">Cliente</label>
+            <input type="text" class="form-control" id="cliente" name="cliente" required>
+        </div>
+        <div class="mb-3">
+            <label for="direccion" class="form-label">Dirección de Entrega</label>
+            <input type="text" class="form-control" id="direccion" name="direccion" required>
+        </div>
+        <div class="mb-3">
+            <label for="productos" class="form-label">Productos</label>
+            <select class="form-select" id="productos" name="productos[]" multiple required>
+                {% for producto in productos %}
+                    <option value="{{ producto.id }}">{{ producto.nombre }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="mb-3">
+            <label for="cantidades" class="form-label">Cantidades</label>
+            <input type="text" class="form-control" id="cantidades" name="cantidades[]" required>
+        </div>
+        <div class="mb-3">
+            <label for="precios_unitarios" class="form-label">Precios Unitarios</label>
+            <input type="text" class="form-control" id="precios_unitarios" name="precios_unitarios[]" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Guardar Pedido</button>
+    </form>
+</div>
+{% endblock %}
