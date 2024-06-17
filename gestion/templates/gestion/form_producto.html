@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ view.object.pk|default:"Nuevo" }} Producto{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <h1>{{ view.object.pk|default:"Nuevo" }} Producto</h1>
+    <form method="post">
+        {% csrf_token %}
+        <div class="mb-3">
+            <label for="nombre" class="form-label">Nombre</label>
+            <input type="text" class="form-control" id="nombre" name="nombre" value="{{ form.nombre.value }}">
+        </div>
+        <div class="mb-3">
+            <label for="descripcion" class="form-label">Descripción</label>
+            <textarea class="form-control" id="descripcion" name="descripcion">{{ form.descripcion.value }}</textarea>
+        </div>
+        <div class="mb-3">
+            <label for="precio" class="form-label">Precio</label>
+            <input type="number" step="0.01" class="form-control" id="precio" name="precio" value="{{ form.precio.value }}">
+        </div>
+        <div class="mb-3">
+            <label for="stock" class="form-label">Stock</label>
+            <input type="number" class="form-control" id="stock" name="stock" value="{{ form.stock.value }}">
+        </div>
+        <button type="submit" class="btn btn-primary">Guardar</button>
+    </form>
+</div>
+{% endblock %}

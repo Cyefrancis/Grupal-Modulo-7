@@ -28,7 +28,7 @@
                     <td>{{ pedido.estado }}</td>
                     <td>{{ pedido.fecha_pedido }}</td>
                     <td>
-                        <a href="#" class="btn btn-info">Ver</a>
+                        <a href="{% url "visualizar_pedido" pedido.id %}" class="btn btn-info">Ver</a>
                     </td>
                 </tr>
             {% empty %}

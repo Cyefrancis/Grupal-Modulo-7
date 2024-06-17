@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block title %}Visualizar Pedido{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <h1>Pedido {{ pedido.id }}</h1>
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Cliente: {{ pedido.cliente }}</h5>
+            <p class="card-text">Dirección de Entrega: {{ pedido.direccion_entrega }}</p>
+            <p class="card-text">Estado: {{ pedido.get_estado_display }}</p>
+            <p class="card-text">Fecha del Pedido: {{ pedido.fecha_pedido }}</p>
+            <hr>
+            <h5>Productos:</h5>
+            <ul class="list-group">
+                {% for detalle in detalles %}
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                    {{ detalle.producto.nombre }} - {{ detalle.cantidad }} unidades
+                    <span class="badge bg-primary rounded-pill">${{ detalle.precio_unitario }}</span>
+                </li>
+                {% endfor %}
+            </ul>
+            <hr>
+            <h5>Cambiar Estado del Pedido:</h5>
+            <form method="post" action="{% url 'cambiar_estado_pedido' pedido.id %}">
+                {% csrf_token %}
+                <div class="mb-3">
+                    <label for="estado" class="form-label">Nuevo Estado</label>
+                    <select class="form-select" id="estado" name="estado">
+                        <option value="pendiente" {% if pedido.estado == "pendiente" %}selected{% endif %}>Pendiente</option>
+                        <option value="preparacion" {% if pedido.estado == "preparacion" %}selected{% endif %}>En preparación</option>
+                        <option value="despacho" {% if pedido.estado == "despacho" %}selected{% endif %}>En despacho</option>
+                        <option value="entregado" {% if pedido.estado == "entregado" %}selected{% endif %}>Entregado</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-success">Actualizar Estado</button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
