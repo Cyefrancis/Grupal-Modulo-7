@@ -7,7 +7,11 @@ from .models import Producto, Pedido, DetallePedido
 from django.urls import reverse, reverse_lazy
 from .forms import ProductoForm
 import decimal as Decimal
+from django.contrib.auth.decorators import user_passes_test
 # Create your views here.
+
+def es_staff_o_superuser(user):
+    return user.is_authenticated and (user.is_staff or user.is_superuser)
 
 def lista_productos(request):
     productos = Producto.objects.all()
@@ -35,10 +39,14 @@ def detalle_pedido(request, pedido_id):
     detalles = DetallePedido.objects.filter(pedido=pedido)
     return render(request, 'gestion/detalle_pedido.html', {'pedido': pedido, 'detalles': detalles})
 
+@login_required
+@user_passes_test(es_staff_o_superuser)
 def tomar_pedido(request):
     productos = Producto.objects.all()
     return render(request, 'gestion/tomar_pedido.html', {'productos': productos})
 
+@login_required
+@user_passes_test(es_staff_o_superuser)
 def guardar_pedido(request):
     if request.method == 'POST':
         cliente = request.POST.get('cliente')

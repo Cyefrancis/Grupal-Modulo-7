@@ -1,14 +1,10 @@
-{% extends './base.html' %}
-{% block title %}Registro de Usuario - Te lo Vendo{% endblock %}
-
+{% extends 'base.html' %}
+{% block title %}Registro{% endblock %}
 {% block content %}
-    <h1>Registro de Usuario</h1>
-    <form method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit" class="btn btn-primary">Registrarse</button>
-    </form>
-    {% if user.is_authenticated %}
-    <a href="{% url 'dashboard' %}">Go to Dashboard</a>
-{% endif %}
+<h2>Registro de Usuario</h2>
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Registrarse</button>
+</form>
 {% endblock %}

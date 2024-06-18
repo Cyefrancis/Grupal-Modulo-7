@@ -1,14 +1,10 @@
-{% extends './base.html' %}
-{% block title %}Iniciar Sesión - Te lo Vendo{% endblock %}
-
+{% extends 'base.html' %}
+{% block title %}Inicio de Sesión{% endblock %}
 {% block content %}
-    <h1>Iniciar Sesión</h1>
-    <form method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit" class="btn btn-primary">Iniciar Sesión</button>
-    </form>
-    {% if user.is_authenticated %}
-    <a href="{% url 'dashboard' %}">Go to Dashboard</a>
-{% endif %}
+<h2>Inicio de Sesión</h2>
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Iniciar Sesión</button>
+</form>
 {% endblock %}

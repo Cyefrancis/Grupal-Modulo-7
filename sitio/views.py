@@ -7,9 +7,9 @@ def registro_usuario(request):
     if request.method == 'POST':
         form = UserCreationForm(request.POST)
         if form.is_valid():
-            user = form.save()
-            login(request, user)
-            return redirect('dashboard')  # Redirect to dashboard or any other page after registration
+            form.save()
+            # Redirigir a alguna página de éxito o a la página de inicio
+            return redirect('iniciar_sesion')
     else:
         form = UserCreationForm()
     return render(request, 'registro_usuario.html', {'form': form})
