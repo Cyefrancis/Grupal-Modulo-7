@@ -112,6 +112,10 @@ def cambiar_estado_pedido(request, pedido_id):
         pedido.save()
         return HttpResponseRedirect(reverse('visualizar_pedido', args=[pedido_id]))
     
+
+def mis_pedidos(request):
+    return render(request, 'gestion/mis_pedidos.html' )
+    
 class ProductoListView(ListView):
     model = Producto
     template_name = 'gestion/productos.html'

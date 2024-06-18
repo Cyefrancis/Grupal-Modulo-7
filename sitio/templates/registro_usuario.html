@@ -1,10 +1,14 @@
 {% extends 'base.html' %}
 {% block title %}Registro{% endblock %}
 {% block content %}
-<h2>Registro de Usuario</h2>
-<form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Registrarse</button>
-</form>
+<div class="container mt-5">
+    <h2 class="mb-4">Registro de Usuario</h2>
+    <form method="post" class="needs-validation" novalidate>
+        {% csrf_token %}
+        {{ form.as_p }}
+        <div class="form-group">
+            <button type="submit" class="btn btn-primary">Registrarse</button>
+        </div>
+    </form>
+</div>
 {% endblock %}
